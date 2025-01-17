@@ -31,28 +31,28 @@
         <h2>Rs 100</h2>
         <h3>Solo</h3>
         <p>Perfect for solo missions! Enjoy 2 hours of gaming bliss.</p>
-        <button onclick="window.location.href='bookNow.html'">Book Now</button>
+        <button onclick="window.location.href='bookNow.php'">Book Now</button>
       </div>
       <div class="package">
         <img src="wuwa.jpg" alt="Duo Delight">
         <h2>Rs 200</h2>
         <h3>Duo</h3>
         <p>Grab a buddy and game together for 3 hours of fun!</p>
-        <button onclick="window.location.href='bookNow.html'">Book Now</button>
+        <button onclick="window.location.href='bookNow.php'">Book Now</button>
       </div>
       <div class="package">
         <img src="LoL.jpg" alt="Squad Goals">
         <h2>Rs 400</h2>
         <h3>Squad</h3>
         <p>Bring the whole crew! 5 hours of non-stop gaming action!</p>
-        <button onclick="window.location.href='bookNow.html'">Book Now</button>
+        <button onclick="window.location.href='bookNow.php'">Book Now</button>
       </div>
       <div class="package">
         <img src="all_day.jpeg" alt="All Day">
         <h2>Rs 600</h2>
         <h3>Solo/Duo/Squad</h3>
         <p>All Day access for the true gaming fanatic</p>
-        <button onclick="window.location.href='bookNow.html'">Book Now</button>
+        <button onclick="window.location.href='bookNow.php'">Book Now</button>
       </div>
   </div>
   <div class="features-container">

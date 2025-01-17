@@ -52,7 +52,7 @@
           <a class="nav-link" href="/Project/homepage.php">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/Project/bookNow.html">Book Now</a>
+          <a class="nav-link" href="/Project/bookNow.php">Book Now</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/Project/aboutUs.html">About Us</a>
