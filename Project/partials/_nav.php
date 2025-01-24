@@ -57,6 +57,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/Project/aboutUs.html">About Us</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Project/addtoCart.php">Cart</a>
+        </li>
       </ul>
       <!-- Separate list for the right-aligned dropdown -->
       <ul class="navbar-nav">

@@ -1,77 +1,63 @@
 <?php require 'partials/_nav.php'; ?>
 
+<?php
+
+session_start(); // Start the session to track the logged-in user
+
+// Check if the user is logged in
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    echo "<p>Please log in first.</p>";
+    header('Location:login.php');
+    exit;
+}
+
+include 'partials/_dbconnect.php';
+
+// Fetch games from the database
+$games_result = $conn->query("SELECT id, name FROM games");
+$games_options = "";
+while ($row = $games_result->fetch_assoc()) {
+    $games_options .= "<option value='{$row['id']}'>{$row['name']}</option>";
+}
+
+// Fetch packages from the database
+$packages_result = $conn->query("SELECT id, name FROM packages");
+$packages_options = "";
+while ($row = $packages_result->fetch_assoc()) {
+    $packages_options .= "<option value='{$row['id']}'>{$row['name']}</option>";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Booking Form</title>
+    <title>Game Booking</title>
     <link rel="stylesheet" href="bookNow_styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Game Booking Form</h1>
-        <form id="purchaseForm">
-            <div class="form-group">
-                <label for="games">Game:</label>
-                <select id="games" name="games" required>
-                    <option value="">Loading games...</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="package">Package:</label>
-                <select id="package" name="package" required>
-                    <option value="">Select a package</option>
-                    <option value="solo">Solo</option>
-                    <option value="duo">Duo</option>
-                    <option value="squad">Squad</option>
-                    <option value="all day">All Day</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="time">Time:</label>
-                <input type="time" id="time" name="time" required>
-            </div>
-            <button type="button" id="proceedToPayment">Proceed to Payment</button>
-        </form>
-    </div>
+    <h1>Book Your Game</h1>
+    <form action="addtoCart.php" method="POST">
+    <!-- Game Selection -->
+    <label for="game">Select Game:</label>
+    <select id="game" name="game" required>
+        <?= $games_options ?>
+    </select>
 
-    <script>
-      // Fetch games from the server
-      async function fetchGames() {
-          const response = await fetch('fetch_games.php');
-          const games = await response.json();
-          const gamesSelect = document.getElementById('games');
+    <!-- Package Selection -->
+    <label for="package">Select Package:</label>
+    <select id="package" name="package" required>
+        <?= $packages_options ?>
+    </select>
 
-          // Clear existing options
-          gamesSelect.innerHTML = '<option value="">Select a game</option>';
+    <!-- Time Slot Selection -->
+    <label for="time">Select Time Slot:</label>
+    <input type="time" id="time" name="time" required>
 
-          // Populate games
-          games.forEach(game => {
-              const option = document.createElement('option');
-              
-              // Ensure correct assignment of values
-              option.value = game.game_id;  // The game_id is assigned as the value of the option
-              option.textContent = game.game;  // The game name is assigned as the display text
-
-              gamesSelect.appendChild(option);
-          });
-      }
-
-      document.getElementById('proceedToPayment').addEventListener('click', function () {
-          const game = document.getElementById('games').value;
-          const package = document.getElementById('package').value;
-          const time = document.getElementById('time').value;
-
-          if (game && package && time) {
-              alert(`You selected:\nGame: ${game}\nPackage: ${package}\nTime: ${time}`);
-          } else {
-              alert('Please fill out all fields before proceeding to payment.');
-          }
-      });
-
-      // Load games when the page loads
-      document.addEventListener('DOMContentLoaded', fetchGames);
-    </script>
+    <!-- Submit Button -->
+    <button type="submit">Add to Cart</button>
+</form>
 </body>
 </html>
